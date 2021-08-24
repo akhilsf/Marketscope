@@ -1,0 +1,53 @@
+{
+  "name": "Marketscope",
+  "version": "1.0.0",
+  "description": "Real Estate tool to gain visibility into quickly growing market",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server/index.js",
+    "react-dev": "webpack --mode development --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akhilsf/Marketscope.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/akhilsf/Marketscope/issues"
+  },
+  "homepage": "https://github.com/akhilsf/Marketscope#readme",
+  "dependencies": {
+    "@babel/cli": "^7.14.8",
+    "@babel/preset-react": "^7.14.5",
+    "axios": "^0.21.1",
+    "body-parser": "^1.19.0",
+    "bootstrap": "^5.1.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.13.8",
+    "morgan": "^1.10.0",
+    "node": "^16.6.1",
+    "nodemon": "^2.0.12",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "styled-components": "^5.3.1",
+    "styled-icons": "^10.37.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "babel-loader": "^8.2.2",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-import": "^2.24.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "install": "^0.13.0",
+    "npm": "^7.21.0",
+    "webpack": "^5.51.1",
+    "webpack-cli": "^4.8.0"
+  }
+}
