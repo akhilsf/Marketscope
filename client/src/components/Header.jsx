@@ -20,18 +20,19 @@ const Saved = styled.span`
   margin-right: 30px;
   padding: 10px 20px;
   border-radius: 20px;
-  transition: all .2s;
+  transition: all .4s;
   cursor: pointer;
+  background: rgb(255, 255, 255, .2);
 
   &:hover {
-    background: rgb(255, 255, 255, .5);
+    background: #161661;
   }
 `;
 
 const Header = () => (
   <HeaderContainer>
     <Title>MARKETSCOPE</Title>
-    <Saved>Saved Locations</Saved>
+    <Saved>My Locations</Saved>
   </HeaderContainer>
 );
 

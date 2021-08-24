@@ -9,7 +9,6 @@
 
 
 body {
-  background-image: url(../../assets/background.png);
   min-height: 100vh;
   background: linear-gradient(#161661, #7597de);
 }

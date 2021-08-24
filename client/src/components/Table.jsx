@@ -3,18 +3,24 @@ import styled from 'styled-components';
 
 const TableContainer = styled.table`
   margin: auto;
-  margin-top: 100px;
+  margin-top: 50px;
   border-collapse: collapse;
   width: 75%;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 16px;
+`;
+
+const Title = styled.div`
+  font-weight: 600;
+  font-size: 36px;
+  margin-bottom: 10px
 `;
 
 const Row = styled.tr`
   background-color: white;
 
-  &:nth-child(even) {
-    background-color: #f2f2f2
+  &:nth-child(odd) {
+    background-color: #f2f2f2;
   }
 `;
 
@@ -27,11 +33,12 @@ const Header = styled.th`
 const Entry = styled.td`
   text-align: left;
   padding: 8px;
-  color: grey;
+  color: rgb(50, 50, 50);
 `;
 
 const Table = () => (
   <TableContainer>
+    <Title>Trending cities</Title>
     <Row>
       <Header>Marketscope Rank</Header>
       <Header>Location</Header>

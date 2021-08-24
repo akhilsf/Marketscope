@@ -20,13 +20,14 @@ const SearchField = styled.input`
   border-radius: 50px;
   border: none;
   background: white;
-  color: black;
+  color: rgb(50, 50, 50);
   font-size: 16px;
   outline: none;
   transition: all 0.4s;
+  box-shadow: 0 0 5px grey;
 
   &:hover {
-    box-shadow: 0 0 5px white;
+    box-shadow: 0 0 5px;
   }
 `;
 
