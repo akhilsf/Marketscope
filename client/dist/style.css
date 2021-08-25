@@ -10,5 +10,6 @@
 
 body {
   min-height: 100vh;
- background: linear-gradient(#161661, #7597de);
+  background: linear-gradient(#161661, #7597de);
+  margin-bottom: 100px;
 }

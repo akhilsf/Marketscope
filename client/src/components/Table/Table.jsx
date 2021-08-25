@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import TableEntry from './TableEntry';
 
 const TableContainer = styled.table`
   margin: auto;
@@ -32,13 +33,7 @@ const Header = styled.th`
   padding: 8px;
 `;
 
-const Entry = styled.td`
-  text-align: left;
-  padding: 8px;
-  color: rgb(50, 50, 50);
-`;
-
-const Table = ({ populationData }) => (
+const Table = ({ summaryData }) => (
   <>
     <Title>Trending cities</Title>
     <TableContainer>
@@ -51,24 +46,7 @@ const Table = ({ populationData }) => (
         <Header>Crime Rate</Header>
         <Header>Useful Links</Header>
       </Row>
-      <Row>
-        <Entry>1</Entry>
-        <Entry>San Francisco</Entry>
-        <Entry>$3,000,000</Entry>
-        <Entry>1,000%</Entry>
-        <Entry>-500%</Entry>
-        <Entry>1,000,000%</Entry>
-        <Entry>google.com</Entry>
-      </Row>
-      <Row>
-        <Entry>2</Entry>
-        <Entry>San Diego</Entry>
-        <Entry>$3,000,000</Entry>
-        <Entry>500%</Entry>
-        <Entry>0%</Entry>
-        <Entry>0%</Entry>
-        <Entry>google.com</Entry>
-      </Row>
+      {summaryData.map((entry, key) => <TableEntry entry={entry} key={key} />)}
     </TableContainer>
   </>
 );
