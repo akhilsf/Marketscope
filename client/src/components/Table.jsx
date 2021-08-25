@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 const TableContainer = styled.table`
   margin: auto;
-  margin-top: 50px;
   border-collapse: collapse;
   width: 75%;
   font-weight: 400;
@@ -11,6 +10,9 @@ const TableContainer = styled.table`
 `;
 
 const Title = styled.div`
+  margin: auto;
+  margin-top: 50px;
+  width: 75%;
   font-weight: 600;
   font-size: 36px;
   margin-bottom: 10px
@@ -36,34 +38,39 @@ const Entry = styled.td`
   color: rgb(50, 50, 50);
 `;
 
-const Table = () => (
-  <TableContainer>
+const Table = ({ populationData }) => (
+  <>
     <Title>Trending cities</Title>
-    <Row>
-      <Header>Marketscope Rank</Header>
-      <Header>Location</Header>
-      <Header>Population Growth</Header>
-      <Header>Job Growth</Header>
-      <Header>Crime Rate</Header>
-      <Header>Useful Links</Header>
-    </Row>
-    <Row>
-      <Entry>1</Entry>
-      <Entry>San Francisco</Entry>
-      <Entry>1,000%</Entry>
-      <Entry>-500%</Entry>
-      <Entry>1,000,000%</Entry>
-      <Entry>google.com</Entry>
-    </Row>
-    <Row>
-      <Entry>2</Entry>
-      <Entry>San Diego</Entry>
-      <Entry>500%</Entry>
-      <Entry>0%</Entry>
-      <Entry>0%</Entry>
-      <Entry>google.com</Entry>
-    </Row>
-  </TableContainer>
+    <TableContainer>
+      <Row>
+        <Header>Marketscope Rank</Header>
+        <Header>Location</Header>
+        <Header>Average House Value</Header>
+        <Header>Population Growth</Header>
+        <Header>Job Growth</Header>
+        <Header>Crime Rate</Header>
+        <Header>Useful Links</Header>
+      </Row>
+      <Row>
+        <Entry>1</Entry>
+        <Entry>San Francisco</Entry>
+        <Entry>$3,000,000</Entry>
+        <Entry>1,000%</Entry>
+        <Entry>-500%</Entry>
+        <Entry>1,000,000%</Entry>
+        <Entry>google.com</Entry>
+      </Row>
+      <Row>
+        <Entry>2</Entry>
+        <Entry>San Diego</Entry>
+        <Entry>$3,000,000</Entry>
+        <Entry>500%</Entry>
+        <Entry>0%</Entry>
+        <Entry>0%</Entry>
+        <Entry>google.com</Entry>
+      </Row>
+    </TableContainer>
+  </>
 );
 
 export default Table;

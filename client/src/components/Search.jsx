@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import styled from 'styled-components';
 import { SearchAlt } from '@styled-icons/boxicons-regular/SearchAlt';
@@ -6,6 +7,7 @@ const SearchContainer = styled.div`
   display: flex;
   position: relative;
   margin: auto;
+  margin-top: 50px;
   width: 60%;
   justify-content: center;
   align-items: center;

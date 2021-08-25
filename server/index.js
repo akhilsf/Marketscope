@@ -8,7 +8,6 @@ app.use(morgan('dev'));
 app.use(express.json());
 
 app.use('/', express.static(path.join(__dirname, '..', 'client', 'dist')));
-
 app.use('/', router);
 
 const PORT = process.env.PORT || 3000;
