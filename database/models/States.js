@@ -1,11 +1,17 @@
 const mongoose = require('mongoose');
 
-const StateCodes = new mongoose.Schema({
+const LocationSchema = new mongoose.Schema({
   state: String,
-  postal: String,
-  FIPS: Number,
+  codes: {
+    postal: String,
+    FIPS: String,
+  },
+  counties: {
+    name: String,
+    FIPS: String,
+  }
 });
 
-const States = mongoose.model('Tracker', StateCodes);
+const FIPCodes = mongoose.model('Tracker', LocationSchema);
 
-module.exports = States;
+module.exports = FIPCodes;

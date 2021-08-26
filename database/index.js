@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const mongoURI = ('mongodb://localhost:27017/marketscope');
+const mongoURI = ('mongodb://localhost:27017/fips');
 
 const db = mongoose.connect(mongoURI, { useNewUrlParser: true });
 

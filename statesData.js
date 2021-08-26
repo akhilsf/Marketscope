@@ -1,7 +1,4 @@
-const counties = require('./countyData');
-
 module.exports = {
-  counties,
   states: {
     Alabama: { postal: 'AL', FIPS: '01' },
     Alaska: { postal: 'AK', FIPS: '02' },
