@@ -62,7 +62,7 @@ const SearchButton = styled.button`
   width: 40px;
   border-radius: 50%;
   border: none;
-  background: #161661;
+  background: #5F9B89;
   outline: none;
   cursor: pointer;
   transition: all 0.2s;
@@ -72,7 +72,7 @@ const SearchButton = styled.button`
   }
 `;
 
-const Search = ({ updateSummary }) => {
+const Search = ({ updateDisplay }) => {
   const handleLookup = (e) => {
     e.preventDefault();
     const searchCounty = document.getElementById('lookupCounty').value;
@@ -80,12 +80,12 @@ const Search = ({ updateSummary }) => {
 
     axios.get(`/census/${searchCounty}&${searchState}`)
       .then((results) => {
-        updateSummary({
+        updateDisplay({
           county: `${searchCounty} County, ${searchState}`,
-          popGrowth: `Population Growth (YoY): ${(results.data * 100).toFixed(2)}%`,
-          jobGrowth: `Job Growth: xx%`,
-          householdIncome: `Average Household Income: $xxxx`,
-          crimeRate: `Average Crime Rate: xx%`,
+          popGrowth: `${(results.data * 100).toFixed(2)}%`,
+          jobGrowth: `xx%`,
+          householdIncome: `$xxxx`,
+          crimeRate: `xx%`,
         });
       })
       .catch((error) => {

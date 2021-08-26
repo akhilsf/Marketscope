@@ -26,15 +26,24 @@ const Saved = styled.span`
   background: rgb(255, 255, 255, .2);
 
   &:hover {
-    background: #161661;
+    background: #4F8172;
   }
 `;
 
-const Header = () => (
-  <HeaderContainer>
-    <Title>MARKETSCOPE</Title>
-    <Saved>My Locations</Saved>
-  </HeaderContainer>
-);
+const Header = () => {
+  const onButtonClick = () => {
+    window.scrollTo({
+      top: 625,
+      behavior: 'smooth',
+    });
+  };
+
+  return (
+    <HeaderContainer>
+      <Title>MARKETSCOPE</Title>
+      <Saved onClick={onButtonClick}>My Locations</Saved>
+    </HeaderContainer>
+  );
+};
 
 export default Header;

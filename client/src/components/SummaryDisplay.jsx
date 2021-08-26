@@ -1,14 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
+import GoogleMapReact from 'google-map-react';
 
-const Box = styled.div`
+const config = require('../../../config');
+
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
   width: 75%;
   margin: auto;
   margin-top: 35px;
-  border-radius: 20px;
   height: 350px;
+  border-radius: 20px;
   background-color: rgba(0, 0, 0, .5);
   transition: all 1s;
+`;
+
+const Left = styled.div`
 `;
 
 const Location = styled.div`
@@ -44,21 +54,70 @@ const Data = styled.div`
   font-size: 18px;
 `;
 
-const SummaryDisplay = ({ summaryInfo }) => {
-  if (summaryInfo) {
+const Map = styled.div`
+  padding-right: 30px;
+  height: 90%;
+  width: 40%;
+`;
+
+const SummaryDisplay = ({ currentDisplay, updateSavedLocations }) => {
+  const handleSave = () => {
+    axios.post('/savedlocations', {
+      county: currentDisplay.county,
+      popGrowth: currentDisplay.popGrowth,
+      jobGrowth: currentDisplay.jobGrowth,
+      householdIncome: currentDisplay.householdIncome,
+      crimeRate: currentDisplay.crimeRate,
+    })
+      .then((results) => {
+        console.log(results);
+      })
+      .then(() => {
+        updateSavedLocations();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  if (currentDisplay) {
     return (
-      <Box>
-        <Location>{summaryInfo.county}</Location>
-        <Save>Save Location</Save>
-        <Data>{summaryInfo.popGrowth}</Data>
-        <Data>{summaryInfo.jobGrowth}</Data>
-        <Data>{summaryInfo.householdIncome}</Data>
-        <Data>{summaryInfo.crimeRate}</Data>
-      </Box>
+      <Container>
+        <Left>
+          <Location>{currentDisplay.county}</Location>
+          <Save onClick={handleSave}>Save Location</Save>
+          <Data>
+            Population Growth:&nbsp;
+            {currentDisplay.popGrowth}
+          </Data>
+          <Data>
+            Job Growth:&nbsp;
+            {currentDisplay.jobGrowth}
+          </Data>
+          <Data>
+            Average Household Income:&nbsp;
+            {currentDisplay.householdIncome}
+          </Data>
+          <Data>
+            Crime Rate:&nbsp;
+            {currentDisplay.crimeRate}
+          </Data>
+        </Left>
+        <Map>
+          <GoogleMapReact
+            bootstrapURLKeys={{ key: config.apiKey }}
+            defaultCenter={{
+              lat: 37.554169,
+              lng: -122.313057,
+            }}
+            defaultZoom={11}
+          />
+        </Map>
+      </Container>
     );
   }
   return (
-    <Box style={{
+    <Left style={{
       opacity: '0',
     }}
     />

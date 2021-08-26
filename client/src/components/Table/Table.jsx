@@ -7,7 +7,7 @@ const TableContainer = styled.table`
   border-collapse: collapse;
   width: 75%;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 14px;
 `;
 
 const Title = styled.div`
@@ -20,7 +20,7 @@ const Title = styled.div`
 `;
 
 const Row = styled.tr`
-  background-color: white;
+  height: 50px;
 
   &:nth-child(odd) {
     background-color: #f2f2f2;
@@ -28,27 +28,34 @@ const Row = styled.tr`
 `;
 
 const Header = styled.th`
-  background-color: #04AA6D;
+  background-color: #6FB59F;
   text-align: left;
   padding: 8px;
 `;
 
-const Table = ({ summaryData }) => (
-  <>
-    <Title>Trending cities</Title>
-    <TableContainer>
-      <Row>
-        <Header>Marketscope Rank</Header>
-        <Header>Location</Header>
-        <Header>Average House Value</Header>
-        <Header>Population Growth</Header>
-        <Header>Job Growth</Header>
-        <Header>Crime Rate</Header>
-        <Header>Useful Links</Header>
-      </Row>
-      {summaryData.map((entry, key) => <TableEntry entry={entry} key={key} />)}
-    </TableContainer>
-  </>
-);
+const Table = ({ savedLocations }) => {
+  if (savedLocations.length === 0) {
+    return (
+      <></>
+    );
+  }
+  return (
+    <>
+      <Title>My Saved Locations</Title>
+      <TableContainer>
+        <Row>
+          <Header>Location</Header>
+          <Header>Population Growth</Header>
+          <Header>Job Growth</Header>
+          <Header>Average Household Income</Header>
+          <Header>Crime Rate</Header>
+        </Row>
+        {savedLocations.map((entry, key) => (
+          <TableEntry entry={entry} key={key} />
+        ))}
+      </TableContainer>
+    </>
+  );
+};
 
 export default Table;

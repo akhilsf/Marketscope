@@ -1,8 +1,8 @@
 /* eslint-disable import/extensions */
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
-import styled from 'styled-components';
 import axios from 'axios';
+import styled from 'styled-components';
 import Header from './components/Header';
 import Search from './components/Search';
 import SummaryDisplay from './components/SummaryDisplay';
@@ -18,25 +18,38 @@ const TopContainer = styled.div`
 
 const App = () => {
   // const [populationData, setPopulationData] = useState();
-  const [summaryData, setSummaryData] = useState([]);
+  const [savedLocations, setSavedLocations] = useState([]);
   const [currentDisplay, setCurrentDisplay] = useState();
 
-  useEffect(() => {
-    setSummaryData([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-  }, []);
-
-  const updateSummary = (info) => {
+  const updateDisplay = (info) => {
     setCurrentDisplay(info);
   };
+
+  const updateSavedLocations = () => {
+    axios.get('/savedlocations')
+      .then((results) => {
+        setSavedLocations(results.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    updateSavedLocations();
+  }, []);
 
   return (
     <>
       <TopContainer>
         <Header />
-        <Search updateSummary={updateSummary} />
-        <SummaryDisplay summaryInfo={currentDisplay} />
+        <Search updateDisplay={updateDisplay} />
+        <SummaryDisplay
+          currentDisplay={currentDisplay}
+          updateSavedLocations={updateSavedLocations}
+        />
       </TopContainer>
-      <Table summaryData={summaryData} />
+      <Table savedLocations={savedLocations} />
     </>
   );
 };
