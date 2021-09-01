@@ -7,10 +7,7 @@ const FipsSchema = new mongoose.Schema({
     unique: true,
     dropDud: true,
   },
-  popGrowth: String,
-  jobGrowth: String,
-  householdIncome: String,
-  crimeRate: String,
+  fips: String,
 }, { strict: true });
 
 const Fips = mongoose.model('Fips', FipsSchema);
