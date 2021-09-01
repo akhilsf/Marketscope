@@ -4,7 +4,7 @@ const config = require('../config');
 const controllers = require('../database/controllers/Fips');
 
 module.exports = {
-  getIncome: (fips) => axios.get(`https://apps.bea.gov/api/data?UserID=${config.beaKey}&GeoFIPS=${fips}&TableName=CAINC1&LineCode=All&METHOD=GetData&Datasetname=Regional`),
+  getPop_Income: (fips) => axios.get(`https://apps.bea.gov/api/data?UserID=${config.beaKey}&GeoFIPS=${fips}&TableName=CAINC1&LineCode=All&METHOD=GetData&Datasetname=Regional`),
 
   getJobs: (fips) => axios.get(`https://apps.bea.gov/api/data?UserID=${config.beaKey}&GeoFIPS=${fips}&TableName=CAEMP25N&LineCode=All&METHOD=GetData&Datasetname=Regional`),
 
@@ -18,30 +18,18 @@ module.exports = {
     let jobGrowth;
 
     const getAggregate = () => {
-      axios.get(`https://api.census.gov/data/2019/pep/population/?get=POP&for=county:${countyID}&in=state:${stateID}&key=${config.censusKey}`)
+      module.exports.getPop_Income(fips)
         .then((results) => {
-          // eslint-disable-next-line prefer-destructuring
-          populationGrowth = results.data[1][0];
+          const dataSet = results.data.BEAAPI.Results.Data;
+          incomeGrowth = (Number(dataSet[4].DataValue.replace(/,/g, '')) / Number(dataSet[3].DataValue.replace(/,/g, '')) - 1);
+          populationGrowth = (Number(dataSet[dataSet.length - 1].DataValue.replace(/,/g, '')) / Number(dataSet[dataSet.length - 2].DataValue.replace(/,/g, '')) - 1);
         })
         .then(() => {
-          axios.get(`https://api.census.gov/data/2018/pep/population/?get=POP&for=county:${countyID}&in=state:${stateID}&key=${config.censusKey}`)
+          module.exports.getJobs(fips)
             .then((results) => {
-              populationGrowth = ((populationGrowth / results.data[1][0]) - 1).toFixed(4);
-            })
-            .then(() => {
-              module.exports.getIncome(fips)
-                .then((results) => {
-                  const dataSet = results.data.BEAAPI.Results.Data;
-                  incomeGrowth = (Number(dataSet[4].DataValue.replace(/,/g, '')) / Number(dataSet[3].DataValue.replace(/,/g, '')) - 1);
-                });
-            })
-            .then(() => {
-              module.exports.getJobs(fips)
-                .then((results) => {
-                  const dataSet = results.data.BEAAPI.Results.Data;
-                  jobGrowth = (Number(dataSet[4].DataValue.replace(/,/g, '')) / Number(dataSet[3].DataValue.replace(/,/g, '')) - 1);
-                  res.status(200).send({ populationGrowth, incomeGrowth, jobGrowth });
-                });
+              const dataSet = results.data.BEAAPI.Results.Data;
+              jobGrowth = (Number(dataSet[4].DataValue.replace(/,/g, '')) / Number(dataSet[3].DataValue.replace(/,/g, '')) - 1);
+              res.status(200).send({ populationGrowth, incomeGrowth, jobGrowth });
             });
         })
         .catch((error) => {
@@ -49,6 +37,7 @@ module.exports = {
         });
     };
 
+    // caching system that I made using a mongoDB database
     controllers.get(`${req.params.county} County, ${reqState}`)
       .then((code) => {
         if (!code) {
