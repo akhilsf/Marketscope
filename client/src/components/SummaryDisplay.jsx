@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import GoogleMapReact from 'google-map-react';
+import mapStyles from './mapStyles.js';
 
 const config = require('../../../config');
 
@@ -42,7 +43,7 @@ const Save = styled.span`
   background: rgb(255, 255, 255, .2);
 
   &:hover {
-    background: #161661;
+    background: #4F8172;
   }
 `;
 
@@ -95,7 +96,7 @@ const SummaryDisplay = ({ currentDisplay, updateSavedLocations }) => {
             {currentDisplay.jobGrowth}
           </Data>
           <Data>
-            Average Household Income:&nbsp;
+            Income Growth:&nbsp;
             {currentDisplay.householdIncome}
           </Data>
           <Data>
@@ -110,7 +111,8 @@ const SummaryDisplay = ({ currentDisplay, updateSavedLocations }) => {
               lat: 37.554169,
               lng: -122.313057,
             }}
-            defaultZoom={11}
+            defaultZoom={12}
+            options={{ styles: mapStyles.vintage }}
           />
         </Map>
       </Container>

@@ -82,9 +82,9 @@ const Search = ({ updateDisplay }) => {
       .then((results) => {
         updateDisplay({
           county: `${searchCounty} County, ${searchState}`,
-          popGrowth: `${(results.data * 100).toFixed(2)}%`,
-          jobGrowth: `xx%`,
-          householdIncome: `$xxxx`,
+          popGrowth: `${(results.data.populationGrowth * 100).toFixed(2)}%`,
+          jobGrowth: `${(results.data.jobGrowth * 100).toFixed(2)}%`,
+          householdIncome: `${(results.data.incomeGrowth * 100).toFixed(2)}%`,
           crimeRate: `xx%`,
         });
       })

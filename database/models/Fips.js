@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const LocationSchema = new mongoose.Schema({
+const FipsSchema = new mongoose.Schema({
   county: {
     type: String,
     required: true,
@@ -13,6 +13,6 @@ const LocationSchema = new mongoose.Schema({
   crimeRate: String,
 }, { strict: true });
 
-const SavedLocation = mongoose.model('mylocations', LocationSchema);
+const Fips = mongoose.model('Fips', FipsSchema);
 
-module.exports = SavedLocation;
+module.exports = Fips;
