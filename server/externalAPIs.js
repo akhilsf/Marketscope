@@ -33,6 +33,7 @@ module.exports = {
             });
         })
         .catch((error) => {
+          console.log(error);
           res.status(500).send(error);
         });
     };
@@ -55,7 +56,8 @@ module.exports = {
                   getAggregate();
                 }
               });
-            });
+            })
+            .catch((error) => console.log(error));
         } else {
           countyID = code.fips;
           fips = `${stateID}${code.fips}`;

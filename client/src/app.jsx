@@ -20,9 +20,15 @@ const App = () => {
   // const [populationData, setPopulationData] = useState();
   const [savedLocations, setSavedLocations] = useState([]);
   const [currentDisplay, setCurrentDisplay] = useState();
+  const [coordinates, setCoordinates] = useState();
 
-  const updateDisplay = (info) => {
+  const updateDisplay = (info, location) => {
     setCurrentDisplay(info);
+    setCoordinates(location);
+  };
+
+  const updateMap = (location) => {
+    setCoordinates(location);
   };
 
   const updateSavedLocations = () => {
@@ -43,10 +49,11 @@ const App = () => {
     <>
       <TopContainer>
         <Header />
-        <Search updateDisplay={updateDisplay} />
+        <Search updateDisplay={updateDisplay} updateMap={updateMap} />
         <SummaryDisplay
           currentDisplay={currentDisplay}
           updateSavedLocations={updateSavedLocations}
+          coordinates={coordinates}
         />
       </TopContainer>
       <Table savedLocations={savedLocations} />

@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import { SearchAlt } from '@styled-icons/boxicons-regular/SearchAlt';
 import axios from 'axios';
 
+const config = require('../../../config');
+
 const SearchContainer = styled.form`
   display: flex;
   position: relative;
@@ -72,7 +74,7 @@ const SearchButton = styled.button`
   }
 `;
 
-const Search = ({ updateDisplay }) => {
+const Search = ({ updateDisplay, updateMap }) => {
   const handleLookup = (e) => {
     e.preventDefault();
     const searchCounty = document.getElementById('lookupCounty').value;
@@ -80,15 +82,29 @@ const Search = ({ updateDisplay }) => {
 
     axios.get(`/census/${searchCounty}&${searchState}`)
       .then((results) => {
+        console.log(results.data);
         updateDisplay({
           county: `${searchCounty} County, ${searchState}`,
           popGrowth: `${(results.data.populationGrowth * 100).toFixed(2)}%`,
           jobGrowth: `${(results.data.jobGrowth * 100).toFixed(2)}%`,
           householdIncome: `${(results.data.incomeGrowth * 100).toFixed(2)}%`,
-          crimeRate: `xx%`,
+          crimeRate: 'xx%',
         });
       })
+      .then(() => {
+        axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
+          params: {
+            address: `${searchCounty} County, ${searchState}`,
+            key: config.apiKey,
+          },
+        })
+          .then((results) => {
+            console.log(results);
+            updateMap(results.data.results[0].geometry.location);
+          });
+      })
       .catch((error) => {
+        console.log('what ');
         console.log(error);
       });
   };

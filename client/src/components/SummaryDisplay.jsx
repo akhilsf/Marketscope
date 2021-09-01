@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import GoogleMapReact from 'google-map-react';
@@ -14,12 +14,9 @@ const Container = styled.div`
   margin: auto;
   margin-top: 35px;
   height: 350px;
-  border-radius: 20px;
-  background-color: rgba(0, 0, 0, .5);
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, .6);
   transition: all 1s;
-`;
-
-const Left = styled.div`
 `;
 
 const Location = styled.div`
@@ -61,7 +58,7 @@ const Map = styled.div`
   width: 40%;
 `;
 
-const SummaryDisplay = ({ currentDisplay, updateSavedLocations }) => {
+const SummaryDisplay = ({ currentDisplay, coordinates, updateSavedLocations }) => {
   const handleSave = () => {
     axios.post('/savedlocations', {
       county: currentDisplay.county,
@@ -84,7 +81,7 @@ const SummaryDisplay = ({ currentDisplay, updateSavedLocations }) => {
   if (currentDisplay) {
     return (
       <Container>
-        <Left>
+        <div>
           <Location>{currentDisplay.county}</Location>
           <Save onClick={handleSave}>Save Location</Save>
           <Data>
@@ -103,14 +100,11 @@ const SummaryDisplay = ({ currentDisplay, updateSavedLocations }) => {
             Crime Rate:&nbsp;
             {currentDisplay.crimeRate}
           </Data>
-        </Left>
+        </div>
         <Map>
           <GoogleMapReact
             bootstrapURLKeys={{ key: config.apiKey }}
-            defaultCenter={{
-              lat: 37.554169,
-              lng: -122.313057,
-            }}
+            center={coordinates}
             defaultZoom={12}
             options={{ styles: mapStyles.vintage }}
           />
@@ -119,7 +113,7 @@ const SummaryDisplay = ({ currentDisplay, updateSavedLocations }) => {
     );
   }
   return (
-    <Left style={{
+    <div style={{
       opacity: '0',
     }}
     />
