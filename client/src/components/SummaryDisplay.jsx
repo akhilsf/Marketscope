@@ -96,17 +96,17 @@ const SummaryDisplay = ({ currentDisplay, coordinates, updateSavedLocations }) =
             Income Growth:&nbsp;
             {currentDisplay.householdIncome}
           </Data>
-          <Data>
+          {/* <Data>
             Crime Rate:&nbsp;
             {currentDisplay.crimeRate}
-          </Data>
+          </Data> */}
         </div>
         <Map>
           <GoogleMapReact
             bootstrapURLKeys={{ key: config.apiKey }}
             center={coordinates}
-            defaultZoom={12}
-            options={{ styles: mapStyles.vintage }}
+            defaultZoom={10}
+            // options={{ styles: mapStyles.lightGrey }}
           />
         </Map>
       </Container>

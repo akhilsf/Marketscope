@@ -39,7 +39,7 @@ const Table = ({ entry }) => {
         <Entry>{entry.popGrowth}</Entry>
         <Entry>{entry.jobGrowth}</Entry>
         <Entry>{entry.householdIncome}</Entry>
-        <Entry>{entry.crimeRate}</Entry>
+        {/* <Entry>{entry.crimeRate}</Entry> */}
       </Row>
       <ExtraRows style={{
         height: selected ? '40px' : '0',
@@ -51,7 +51,7 @@ const Table = ({ entry }) => {
         <ExtraEntry>--</ExtraEntry>
         <ExtraEntry>--</ExtraEntry>
         <ExtraEntry>--</ExtraEntry>
-        <ExtraEntry>--</ExtraEntry>
+        {/* <ExtraEntry>--</ExtraEntry> */}
       </ExtraRows>
       <ExtraRows style={{
         height: selected ? '40px' : '0',
@@ -63,7 +63,7 @@ const Table = ({ entry }) => {
         <ExtraEntry>--</ExtraEntry>
         <ExtraEntry>--</ExtraEntry>
         <ExtraEntry>--</ExtraEntry>
-        <ExtraEntry>--</ExtraEntry>
+        {/* <ExtraEntry>--</ExtraEntry> */}
       </ExtraRows>
     </>
   );

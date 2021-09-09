@@ -104,7 +104,6 @@ const Search = ({ updateDisplay, updateMap }) => {
           });
       })
       .catch((error) => {
-        console.log('what ');
         console.log(error);
       });
   };

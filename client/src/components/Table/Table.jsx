@@ -16,7 +16,7 @@ const Title = styled.div`
   width: 75%;
   font-weight: 600;
   font-size: 36px;
-  margin-bottom: 10px
+  margin-bottom: 10px;
 `;
 
 const Row = styled.tr`
@@ -36,7 +36,7 @@ const Header = styled.th`
 const Table = ({ savedLocations }) => {
   if (savedLocations.length === 0) {
     return (
-      <></>
+      <Title>No Saved Locations Yet</Title>
     );
   }
   return (
@@ -47,8 +47,8 @@ const Table = ({ savedLocations }) => {
           <Header>Location</Header>
           <Header>Population Growth</Header>
           <Header>Job Growth</Header>
-          <Header>Average Household Income</Header>
-          <Header>Crime Rate</Header>
+          <Header>Income Growth</Header>
+          {/* <Header>Crime Rate</Header> */}
         </Row>
         {savedLocations.map((entry, key) => (
           <TableEntry entry={entry} key={key} />
