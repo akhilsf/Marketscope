@@ -99,7 +99,6 @@ const Search = ({ updateDisplay, updateMap }) => {
           },
         })
           .then((results) => {
-            console.log(results);
             updateMap(results.data.results[0].geometry.location);
           });
       })

@@ -35,8 +35,9 @@ module.exports = {
         module.exports.getPop_Income(fips)
           .then((results) => {
             const dataSet = results.data.BEAAPI.Results.Data;
+            console.log(dataSet, 'looooook here');
             incomeGrowth = (Number(dataSet[4].DataValue.replace(/,/g, '')) / Number(dataSet[3].DataValue.replace(/,/g, '')) - 1);
-            populationGrowth = (Number(dataSet[dataSet.length - 1].DataValue.replace(/,/g, '')) / Number(dataSet[dataSet.length - 2].DataValue.replace(/,/g, '')) - 1);
+            populationGrowth = (Number(dataSet[0].DataValue.replace(/,/g, '')) / Number(dataSet[1].DataValue.replace(/,/g, '')) - 1);
           });
       })
       .then(() => {

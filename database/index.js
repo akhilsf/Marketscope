@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const mongoURI = ('mongodb://localhost:27017/marketscope');
 
-const db = mongoose.connect(mongoURI, { useNewUrlParser: true });
+const db = mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 db
   .then(() => console.log(`Connected to: ${mongoURI}`))
