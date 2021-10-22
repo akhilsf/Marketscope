@@ -1,6 +1,11 @@
-# Marketscope
+<h1 align="center">
+  Marketscope
+</h1>
 
+<p align="center">
 A simple real estate tool to gain visibility into quickly growing markets
+</p>
+
 
 ## Key Features
 * Search functionality for any county within the United States
@@ -11,7 +16,9 @@ A simple real estate tool to gain visibility into quickly growing markets
 <img width="1432" alt="Screen Shot 2021-09-09 at 9 26 46 AM" src="https://user-images.githubusercontent.com/81180232/138490059-e16c5545-7907-4790-b173-baa81557cad2.png">
 
 ## How To Use
-To clone and run this application, you'll need Git and Node.js (which comes with npm) installed on your computer. From your command line:
+To clone and run this application, you'll need Git and Node.js (which comes with npm) installed on your computer.
+
+### From your command line:
 
 
 #### Clone this repository
